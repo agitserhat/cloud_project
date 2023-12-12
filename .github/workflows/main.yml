@@ -33,5 +33,5 @@ jobs:
         application_name: 'aws_fast'  # Elastic Beanstalk uygulama adınız
         environment_name: 'Awsfast-env'  # Elastic Beanstalk ortam adınız
         region: 'eu-north-1'  # AWS bölgeniz, örn: us-west-2
-        version_label: 'deploy-${{ github.run_number }}'
+        version_label: 'deploy-${{ github.run_id }}-${{ github.run_attempt }}'
         deployment_package: ProjectCloud.zip  # Elastic Beanstalk'a yüklemek için zip dosyası
