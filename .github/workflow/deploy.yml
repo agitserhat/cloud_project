@@ -1,0 +1,38 @@
+name: Deploy to AWS Elastic Beanstalk
+
+on:
+  push:
+    branches:
+      - main  # main branch'e yapılan push işlemleri bu workflow'u tetikler
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Source Code
+      uses: actions/checkout@v2  # Repo kodunu alır
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'  # Python sürümünü belirleyin
+
+    - name: Install Dependencies
+      run: |
+        pip install -r requirements.txt  # Gerekli bağımlılıkları yükler
+
+    - name: Zip Application Files
+      run: zip -r deploy.zip . -x "*.git*"  # Uygulama dosyalarını zip'ler
+
+    - name: Deploy to AWS Elastic Beanstalk
+      uses: einaregilsson/beanstalk-deploy@v18
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}  # GitHub secrets'ten alınan AWS credentials
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: 'agit_cloud'  # Elastic Beanstalk uygulama adınız
+        environment_name: 'Agitcloud-env'  # Elastic Beanstalk ortam adınız
+        region: 'eu-north-1'  # AWS bölgeniz, örn: us-west-2
+        version_label: 'deploy-${{ github.run_number }}'
+        source_bundle: ProjectCloud.zip  # Elastic Beanstalk'a yüklemek için zip dosyası
+
