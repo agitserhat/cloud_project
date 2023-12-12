@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8'  # Python sürümünü belirleyin
+        python-version: '3.11'  # Python sürümünü belirleyin
 
     - name: Install Dependencies
       run: |
