@@ -23,7 +23,7 @@ jobs:
         pip install -r requirements.txt  # Gerekli bağımlılıkları yükler
 
     - name: Zip Application Files
-      run: zip -r deploy.zip . -x "*.git*"  # Uygulama dosyalarını zip'ler
+      run: zip -r ProjectCloud.zip . -x "*.git*"  # Uygulama dosyalarını zip'ler
 
     - name: Deploy to AWS Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v18
