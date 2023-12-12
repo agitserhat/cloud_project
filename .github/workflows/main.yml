@@ -28,7 +28,7 @@ jobs:
     - name: Deploy to AWS Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v18
       with:
-        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}  # GitHub secrets'ten alınan AWS credentials
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}  # GitHub secrets'ten alınan AWS credentials
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: 'aws_fast'  # Elastic Beanstalk uygulama adınız
         environment_name: 'Awsfast-env'  # Elastic Beanstalk ortam adınız
